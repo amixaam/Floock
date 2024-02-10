@@ -9,6 +9,13 @@ class Tag extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'user_id',
+        'project_id',
+
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -19,7 +26,7 @@ class Tag extends Model
         return $this->belongsToMany(Project::class);
     }
 
-    public function flocks()
+    public function floocks()
     {
         return $this->hasMany(Floock::class);
     }

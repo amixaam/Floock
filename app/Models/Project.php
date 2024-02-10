@@ -27,7 +27,7 @@ class Project extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function flocks()
+    public function floocks()
     {
         return $this->hasMany(Floock::class);
     }
