@@ -1,37 +1,31 @@
 import React from "react";
+import ResponsiveNavLink from "./ResponsiveNavLink";
 
-export default function Table({ cols, data, action }) {
+export default function Table({ cols, prettyCols, data, action }) {
     return (
-        <div classNameName="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table classNameName="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <div className="relative overflow-x-auto">
+            <table className="w-full text-sm text-left rtl:text-right">
+                <thead className="text-xs">
                     <tr>
                         {cols.map((col) => (
-                            <th key={col} scope="col" className="px-6 py-3">
-                                {col}
+                            <th key={col} scope="col" className="py-3">
+                                <p>{prettyCols[col] ? prettyCols[col] : col}</p>
                             </th>
                         ))}
-                        <th scope="col" className="px-6 py-3"></th>
                     </tr>
                 </thead>
                 <tbody>
                     {data.map((item) => (
-                        <tr
-                            key={item.id}
-                            className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
-                        >
+                        <tr key={item.id} className="">
                             {cols.map((col) => (
-                                <td
-                                    key={col}
-                                    scope="col"
-                                    className="px-6 py-3 dark:text-white"
-                                >
-                                    {item[col]}
+                                <td key={col} scope="col" className="py-3">
+                                    <ResponsiveNavLink
+                                        href={route(action, item.id)}
+                                    >
+                                        <p>{item[col]}</p>
+                                    </ResponsiveNavLink>
                                 </td>
                             ))}
-                            <td className="px-6 py-4 dark:text-white">
-                                <a href={route(action, item.id)}>view</a>
-                            </td>
                         </tr>
                     ))}
                 </tbody>

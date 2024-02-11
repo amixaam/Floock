@@ -5,25 +5,17 @@ import Table from "@/Components/Table";
 
 export default function All({ auth, projects }) {
     return (
-        <AuthenticatedLayout
-            user={auth.user}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Projects
-                </h2>
-            }
-        >
+        <AuthenticatedLayout user={auth.user} header="Projects">
             <Head title="Projects" />
-
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <Table
-                        data={projects}
-                        cols={["name", "status", "created_at"]}
-                        action="projects.view"
-                    />
-                </div>
-            </div>
+            <Table
+                data={projects}
+                cols={["name", "status", "formatted_date", "total_time"]}
+                prettyCols={{
+                    formatted_date: "created at",
+                    total_time: "time commitment",
+                }}
+                action="projects.view"
+            />
         </AuthenticatedLayout>
     );
 }

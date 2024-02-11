@@ -1,3 +1,81 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900;8..144,1000&display=swap");
+
+:root {
+    --bg: #070b08;
+    --bg-50: #0a100b;
+    --bg-100: #141f17;
+    --bg-200: #283e2d;
+    --bg-200-50: rgba(40, 62, 45, 0.5);
+    --bg-250: #2f4935;
+    --bg-300: #3c5d44;
+    --bg-400: #507c5b;
+    --bg-500: #639c71;
+    --bg-600: #83af8e;
+    --bg-700: #a2c3aa;
+    --bg-800: #c1d7c6;
+    --bg-900: #e0ebe3;
+    --bg-950: #eff5f1;
+
+    --text: #e8fdea;
+    --text-100: #d1fad5;
+    --text-200: #a3f5ab;
+    --text-300: #75f081;
+    --text-400: #46ec57;
+    --text-500: #18e72d;
+    --text-600: #13b924;
+    --text-700: #0f8a1b;
+    --text-800: #0a5c12;
+    --text-900: #052e09;
+    --text-950: #021704;
+
+    --secondary: #e4f287;
+}
+
+* {
+    /* border: 1px red solid; */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto Flex", sans-serif;
+}
+.screen {
+    background-color: var(--bg);
+}
+
+.ui-bg {
+    background-color: var(--bg-200-50);
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+}
+h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 120%;
+}
+h2 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: var(--text);
+    line-height: 100%;
+}
+h6 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--bg-300);
+    line-height: 100%;
+    text-transform: uppercase;
+}
+p {
+    font-size: 1rem;
+    font-weight: medium;
+    color: var(--text);
+    line-height: 100%;
+}
+.secondary {
+    color: var(--secondary);
+}
