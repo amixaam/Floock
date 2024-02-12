@@ -7,6 +7,7 @@ export default function All({ auth, projects }) {
     return (
         <AuthenticatedLayout user={auth.user} header="Projects">
             <Head title="Projects" />
+
             <Table
                 data={projects}
                 cols={["name", "status", "formatted_date", "total_time"]}

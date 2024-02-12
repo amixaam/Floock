@@ -2,6 +2,14 @@ import React from "react";
 import ResponsiveNavLink from "./ResponsiveNavLink";
 
 export default function Table({ cols, prettyCols, data, action }) {
+    if (data.length === 0) {
+        return (
+            <div className="text-center">
+                <h6>No data found</h6>
+            </div>
+        );
+    }
+
     return (
         <div className="relative overflow-x-auto">
             <table className="w-full text-sm text-left rtl:text-right">

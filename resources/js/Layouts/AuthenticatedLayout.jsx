@@ -98,7 +98,9 @@ export default function Authenticated({ user, header, children }) {
 
                 <main className="content flex flex-col gap-4 z-10">
                     {header && <h1 className="ui-bg">{header}</h1>}
-                    <div className="flex flex-col gap-4 ui-bg">{children}</div>
+                    <div className="flex flex-col gap-4 ui-bg h-full">
+                        {children}
+                    </div>
                 </main>
             </div>
         </div>

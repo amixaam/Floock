@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Floock;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -45,8 +46,20 @@ class ProjectController extends Controller
 
     public function view(Project $project)
     {
+        $floocks = Floock::where('project_id', $project->id)
+            ->get();
+
+        foreach ($floocks as $floock) {
+            $floock['formatted_time'] = Carbon::parse($floock->end_time)->diff(Carbon::parse($floock->start_time))->format('%H:%I:%S');
+            $floock['formatted_interval'] =
+                Carbon::parse($floock->start_time)->format('d/m/Y - H:i A') . " - " . Carbon::parse($floock->end_time)->format('H:i A');
+            // $floock['formatted_start_time'] = Carbon::parse($floock->start_time)->format('H:i A');
+            // $floock['formatted_end_time'] = Carbon::parse($floock->end_time)->format('H:i A');
+        }
+
         return Inertia::render('Projects/View', [
             'project' => $project,
+            'floocks' => $floocks,
         ]);
     }
 
