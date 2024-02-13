@@ -47,6 +47,7 @@ class ProjectController extends Controller
     public function view(Project $project)
     {
         $floocks = Floock::where('project_id', $project->id)
+            ->orderBy('start_time', 'desc')
             ->get();
 
         foreach ($floocks as $floock) {

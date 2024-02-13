@@ -92,6 +92,10 @@ export default function Authenticated({ user, header, children }) {
                                 </li>
                             </ol>
                         </div>
+                        <button className="flex gap-2 items-center">
+                            <i className="bi bi-plus-circle-fill l-green-i"></i>
+                            <h6>new timer</h6>
+                        </button>
                     </div>
                     <div>{/* new timer */}</div>
                 </nav>

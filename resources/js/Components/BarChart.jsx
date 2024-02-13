@@ -42,8 +42,6 @@ const BarChart = ({ data, filterOption }) => {
     // Map the data to corresponding labels, filling in zeros for labels with no data
     const lengths = labels.map((label) => groupedData[label] || 0);
 
-    console.log(labels);
-    console.log(groupedData);
     // Define the dataset
     const dataset = {
         labels: labels,
@@ -59,15 +57,27 @@ const BarChart = ({ data, filterOption }) => {
 
     const options = {
         scales: {
+            x: {
+                ticks: {
+                    color: "white",
+                },
+                grid: {
+                    lineWidth: 1,
+                },
+            },
             y: {
                 position: "right",
                 stacked: true,
                 beginAtZero: true,
                 ticks: {
+                    color: "white",
                     callback: function (value, index, values) {
                         return value + " hours";
                     },
-                    stepSize: 10, // Specify the step size as needed
+                    stepSize: 10,
+                },
+                grid: {
+                    lineWidth: 4,
                 },
             },
         },
@@ -75,8 +85,6 @@ const BarChart = ({ data, filterOption }) => {
             legend: {
                 display: false,
             },
-            // Define a custom plugin to display values above bars
-            customBarValue: {},
         },
         responsive: true,
         maintainAspectRatio: false,

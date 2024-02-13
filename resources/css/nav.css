@@ -32,3 +32,6 @@
 .content {
     width: 100%;
 }
+.l-green-i {
+    color: var(--bg-250);
+}
