@@ -1,0 +1,11 @@
+.ongoing-wrapper {
+    background-color: var(--bg-250);
+    border-radius: 10px;
+    padding: 1rem;
+
+    i {
+        line-height: 0%;
+        font-size: 2rem;
+        color: var(--text);
+    }
+}

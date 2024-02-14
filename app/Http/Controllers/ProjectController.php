@@ -16,14 +16,6 @@ use DateTime;
 
 class ProjectController extends Controller
 {
-    protected function formatMinutesToTime($minutes)
-    {
-        // TODO: once floocks can be started and stopped, change how 'length' is stored to a full time diff, not diff in minutes
-        $hours = floor($minutes / 60);
-        $minutes = $minutes % 60;
-        $seconds = 0; // Set seconds to 0 if not tracked
-        return sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds);
-    }
 
     public function index()
     {

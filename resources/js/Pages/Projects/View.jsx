@@ -13,14 +13,16 @@ export default function View({ auth, project, floocks }) {
         setFilterOption(event.target.value);
     };
 
+
     return (
         <AuthenticatedLayout user={auth.user} header={project.name}>
             <Head title={project.name} />
+            
             <div className="filter-wrapper flex flex-row gap-2">
                 <div className="filter flex flex-row items-center">
                     <i className="bi bi-calendar2-range-fill secondary-i"></i>
                     <select
-                        className="input ring-0 ring-transparent"
+                        className="input focus:ring-0"
                         name="filterOption"
                         value={filterOption}
                         onChange={handleFilterChange}
@@ -35,10 +37,7 @@ export default function View({ auth, project, floocks }) {
                 </div>
                 <div className="filter flex flex-row items-center">
                     <i className="bi bi-tags-fill secondary-i"></i>
-                    <select
-                        className="input ring-0 ring-transparent"
-                        name="filterOption"
-                    >
+                    <select className="input focus:ring-0" name="filterOption">
                         <option value="">All</option>
                         <option value="">Nichijou</option>
                     </select>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FloockController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Foundation\Application;
@@ -35,6 +36,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/projects/view/{project}', [ProjectController::class, 'view'])->name('projects.view');
     Route::get('/projects/edit/{project}', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::patch('/projects/update/{project}', [ProjectController::class, 'update'])->name('projects.update');
+    Route::post("/projects/create", [ProjectController::class, "create"])->name("projects.create");
+
+    Route::post("/floocks/create", [FloockController::class, 'create'])->name('floocks.create');
+    Route::get("/floocks/finish", [FloockController::class, 'finish'])->name('floocks.finish');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

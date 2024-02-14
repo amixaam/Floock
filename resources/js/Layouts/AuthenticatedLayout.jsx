@@ -1,18 +1,21 @@
 import { useState } from "react";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
 import "../../css/nav.css";
 
 import glowTop from "../../../public//Images/glow-top.png";
 import glowBottom from "../../../public//Images/glow-bottom.png";
+import Modal from "@/Components/Modal";
+import CreateFloockForm from "@/Pages/Projects/Partials/CreateFloockForm";
+import Ongoing from "@/Components/Ongoing";
 
 export default function Authenticated({ user, header, children }) {
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
-
     const [showingNav, setShowingNav] = useState(true);
+    const [newTimerPopup, setNewTimerPopup] = useState(false);
+    const { options, ongoing } = usePage().props;
 
+    console.log(ongoing);
     return (
         <div className="min-h-screen screen">
             <img
@@ -25,6 +28,10 @@ export default function Authenticated({ user, header, children }) {
                 alt=""
                 className="absolute max-h-screen w-full"
             />
+
+            <Modal show={newTimerPopup} onClose={setNewTimerPopup}>
+                <CreateFloockForm options={options} user={user} />
+            </Modal>
 
             <div className="min-h-screen flex flex-row p-4 gap-4">
                 <nav className="flex flex-col nav-sidebar ui-bg px-4 py-2 z-10">
@@ -92,12 +99,19 @@ export default function Authenticated({ user, header, children }) {
                                 </li>
                             </ol>
                         </div>
-                        <button className="flex gap-2 items-center">
-                            <i className="bi bi-plus-circle-fill l-green-i"></i>
-                            <h6>new timer</h6>
-                        </button>
+                        {ongoing ? (
+                            <Ongoing ongoing={ongoing} />
+                        ) : (
+                            <button
+                                onClick={() => setNewTimerPopup(true)}
+                                className="flex gap-2 items-center hover:brightness-90"
+                                disabled={ongoing ? true : false}
+                            >
+                                <i className="bi bi-plus-circle-fill l-green-i"></i>
+                                <h6>new timer</h6>
+                            </button>
+                        )}
                     </div>
-                    <div>{/* new timer */}</div>
                 </nav>
 
                 <main className="content flex flex-col gap-4 z-10">

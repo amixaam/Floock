@@ -1,0 +1,16 @@
+.panel {
+    background-color: var(--bg-200);
+    border: 3px solid var(--bg-300);
+
+    padding: 1rem;
+    padding-bottom: 1rem;
+    overflow: visible;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    h1 {
+        text-transform: capitalize;
+    }
+}

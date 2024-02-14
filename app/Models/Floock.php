@@ -9,6 +9,17 @@ class Floock extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'project_id',
+        'user_id',
+        'tag_id',
+        'name',
+        'notes',
+        'length',
+        'start_time',
+        'end_time',
+    ];
+
     public function project()
     {
         return $this->belongsTo(Project::class);
