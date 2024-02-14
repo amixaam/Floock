@@ -47,6 +47,8 @@ class FloockController extends Controller
     {
         $ongoing = Ongoing::where('user_id', auth()->user()->id)->first();
         if ($ongoing) {
+            $lengthInSeconds = now()->diffInSeconds($ongoing->start_time);
+
             Floock::create([
                 'project_id' => $ongoing->project_id,
                 'user_id' => $ongoing->user_id,
@@ -54,7 +56,7 @@ class FloockController extends Controller
                 'name' => $ongoing->name,
                 'start_time' => $ongoing->start_time,
                 'end_time' => now(),
-                'duration' => now()->diff($ongoing->start_time),
+                'length' => $lengthInSeconds,
             ]);
             $ongoing->delete();
         }

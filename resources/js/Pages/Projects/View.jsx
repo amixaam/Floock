@@ -13,11 +13,10 @@ export default function View({ auth, project, floocks }) {
         setFilterOption(event.target.value);
     };
 
-
     return (
         <AuthenticatedLayout user={auth.user} header={project.name}>
             <Head title={project.name} />
-            
+
             <div className="filter-wrapper flex flex-row gap-2">
                 <div className="filter flex flex-row items-center">
                     <i className="bi bi-calendar2-range-fill secondary-i"></i>

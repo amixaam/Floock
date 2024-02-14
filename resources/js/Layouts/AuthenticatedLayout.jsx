@@ -15,7 +15,6 @@ export default function Authenticated({ user, header, children }) {
     const [newTimerPopup, setNewTimerPopup] = useState(false);
     const { options, ongoing } = usePage().props;
 
-    console.log(ongoing);
     return (
         <div className="min-h-screen screen">
             <img
@@ -30,7 +29,11 @@ export default function Authenticated({ user, header, children }) {
             />
 
             <Modal show={newTimerPopup} onClose={setNewTimerPopup}>
-                <CreateFloockForm options={options} user={user} />
+                <CreateFloockForm
+                    options={options}
+                    user={user}
+                    onClose={setNewTimerPopup}
+                />
             </Modal>
 
             <div className="min-h-screen flex flex-row p-4 gap-4">

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('tag_id')->nullable()->constrained();
             $table->string('name');
             $table->text('notes')->nullable();
-            $table->timestamp('length')->nullable();
+            $table->integer('length')->nullable();
             $table->timestamp('start_time');
             $table->timestamp('end_time')->nullable();
             $table->timestamps();

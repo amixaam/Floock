@@ -8,7 +8,7 @@ import Creatable, { useCreatable } from "react-select/creatable";
 
 import "../../../../css/form.css";
 
-export default function CreateFloockForm({ options, user }) {
+export default function CreateFloockForm({ options, user, onClose }) {
     console.log(options);
     const { data, setData, post, errors, processing, recentlySuccessful } =
         useForm({
@@ -24,6 +24,10 @@ export default function CreateFloockForm({ options, user }) {
         console.log(data);
         post(route("floocks.create", data));
     };
+
+    if (recentlySuccessful && !processing) {
+        onClose(false);
+    }
 
     return (
         <>

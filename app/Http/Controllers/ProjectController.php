@@ -26,9 +26,10 @@ class ProjectController extends Controller
 
 
         foreach ($projects as $project) {
-            $project['total_time'] = $this->formatMinutesToTime($project->floocks->sum('length'));
-            $formattedDate = Carbon::parse($project->created_at)->format('d/m/Y');
-            $project['formatted_date'] = $formattedDate;
+            $length = $project->floocks->sum('length');
+            $project['total_time'] = Carbon::parse($length)->format('H:i:s');
+
+            $project['formatted_date'] = Carbon::parse($project['created_at'])->format('d-m-Y');
         }
 
         return Inertia::render('Projects/All', [
@@ -43,11 +44,9 @@ class ProjectController extends Controller
             ->get();
 
         foreach ($floocks as $floock) {
-            $floock['formatted_time'] = Carbon::parse($floock->end_time)->diff(Carbon::parse($floock->start_time))->format('%H:%I:%S');
+            $floock['formatted_time'] = Carbon::parse($floock->length)->format('H:i:s');
             $floock['formatted_interval'] =
                 Carbon::parse($floock->start_time)->format('d/m/Y - H:i A') . " - " . Carbon::parse($floock->end_time)->format('H:i A');
-            // $floock['formatted_start_time'] = Carbon::parse($floock->start_time)->format('H:i A');
-            // $floock['formatted_end_time'] = Carbon::parse($floock->end_time)->format('H:i A');
         }
 
         return Inertia::render('Projects/View', [

@@ -35,7 +35,7 @@ const BarChart = ({ data, filterOption }) => {
     // Grouping data by labels and calculating total length
     const groupedData = filteredData.reduce((acc, entry) => {
         const label = getLabel(entry.start_time, filterOption);
-        acc[label] = (acc[label] || 0) + Math.fround(entry.length / 60);
+        acc[label] = (acc[label] || 0) + Math.fround(entry.length / 3600);
         return acc;
     }, {});
 
