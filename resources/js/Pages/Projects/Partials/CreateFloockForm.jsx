@@ -1,8 +1,8 @@
 import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import { useForm } from "@inertiajs/react";
 import React from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 import Creatable, { useCreatable } from "react-select/creatable";
 
@@ -17,10 +17,10 @@ export default function CreateFloockForm({ options, user, onClose }) {
             tag: null,
             name: "",
         });
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        // TODO: error handling
         console.log(data);
         post(route("floocks.create", data));
     };

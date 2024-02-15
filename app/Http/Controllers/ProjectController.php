@@ -45,9 +45,9 @@ class ProjectController extends Controller
 
         foreach ($floocks as $floock) {
             $floock['formatted_time'] = Carbon::parse($floock->length)->format('H:i:s');
-            $floock['formatted_interval'] =
-                Carbon::parse($floock->start_time)->format('d/m/Y - H:i A') . " - " . Carbon::parse($floock->end_time)->format('H:i A');
+            $floock['formatted_interval'] = null;
         }
+
 
         return Inertia::render('Projects/View', [
             'project' => $project,

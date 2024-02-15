@@ -5,6 +5,9 @@
         height: 100%;
         min-width: 15rem;
     }
+    .creatable__input {
+        --tw-ring-shadow: none;
+    }
 }
 
 .form-button {

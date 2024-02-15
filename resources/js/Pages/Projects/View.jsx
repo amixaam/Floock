@@ -3,6 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import Table from "@/Components/Table";
 import BarChart from "@/Components/BarChart";
+import dayjs from "dayjs";
 
 import "../../../css/view.css";
 import TotalStatistics from "@/Components/TotalStatistics";
@@ -12,6 +13,21 @@ export default function View({ auth, project, floocks }) {
     const handleFilterChange = (event) => {
         setFilterOption(event.target.value);
     };
+
+    // format interval to local time
+    floocks.forEach((floock) => {
+        const formattedDate = dayjs
+            .utc(floock.start_time)
+            .local()
+            .format("YYYY-MM-DD");
+        const interval =
+            dayjs.utc(floock.start_time).local().format("HH:mm:ss") +
+            " - " +
+            dayjs.utc(floock.end_time).local().format("HH:mm:ss");
+        const formatted_interval = formattedDate + " " + interval;
+
+        floock["formatted_interval"] = formatted_interval;
+    });
 
     return (
         <AuthenticatedLayout user={auth.user} header={project.name}>

@@ -47,7 +47,7 @@ const BarChart = ({ data, filterOption }) => {
         labels: labels,
         datasets: [
             {
-                label: "Length",
+                label: "Hours",
                 backgroundColor: "#e4f287",
                 borderRadius: 7,
                 data: lengths,
@@ -133,7 +133,7 @@ const getAllLabels = (filterOption) => {
 
 // Function to get label based on start_time and filter option
 const getLabel = (start_time, filterOption) => {
-    const startTime = dayjs(start_time);
+    const startTime = dayjs.utc(start_time).local();
     switch (filterOption) {
         case "last year":
             return startTime.format("MMM YYYY");

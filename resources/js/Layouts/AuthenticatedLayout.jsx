@@ -11,9 +11,13 @@ import CreateFloockForm from "@/Pages/Projects/Partials/CreateFloockForm";
 import Ongoing from "@/Components/Ongoing";
 
 export default function Authenticated({ user, header, children }) {
-    const [showingNav, setShowingNav] = useState(true);
+    const [showingNav, setShowingNav] = useState(false);
     const [newTimerPopup, setNewTimerPopup] = useState(false);
     const { options, ongoing } = usePage().props;
+
+    const toggleNav = () => {
+        setShowingNav(!showingNav);
+    };
 
     return (
         <div className="min-h-screen screen">
@@ -28,6 +32,7 @@ export default function Authenticated({ user, header, children }) {
                 className="absolute max-h-screen w-full"
             />
 
+            {/* TODO: handle errors */}
             <Modal show={newTimerPopup} onClose={setNewTimerPopup}>
                 <CreateFloockForm
                     options={options}
@@ -37,7 +42,11 @@ export default function Authenticated({ user, header, children }) {
             </Modal>
 
             <div className="min-h-screen flex flex-row p-4 gap-4">
-                <nav className="flex flex-col nav-sidebar ui-bg px-4 py-2 z-10">
+                <nav
+                    className={`flex flex-col nav-sidebar ui-bg px-4 py-2 z-10 ${
+                        showingNav ? "hide-nav" : ""
+                    }`}
+                >
                     <Link href="/">
                         <h1>Floock</h1>
                     </Link>
@@ -116,7 +125,9 @@ export default function Authenticated({ user, header, children }) {
                         )}
                     </div>
                 </nav>
-
+                <button className="sidebar-button z-20" onClick={toggleNav}>
+                    <i className="bi bi-layout-sidebar-inset"></i>
+                </button>
                 <main className="content flex flex-col gap-4 z-10">
                     {header && <h1 className="ui-bg">{header}</h1>}
                     <div className="flex flex-col gap-4 ui-bg h-full">
