@@ -21,34 +21,35 @@ export default function Ongoing({ ongoing }) {
         ongoing = null;
     };
 
+    const handleRedirect = () => {
+        router.get(route("timer.visual"));
+    };
+
     useEffect(() => {
-        // Function to update the timer
+        // update timer
         const updateTimer = () => {
             const utcTime = dayjs.utc();
             const diff = utcTime.diff(start_time);
             const formattedTime = dayjs.utc(diff).format("HH:mm:ss");
-            setFormattedTime(formattedTime); // Update the state with the new formatted time
+            setFormattedTime(formattedTime);
         };
 
-        // Call the updateTimer function initially
         updateTimer();
 
-        // Set up an interval to update the timer every second
         const intervalId = setInterval(updateTimer, 1000);
 
-        // Cleanup function to clear the interval when the component unmounts
         return () => clearInterval(intervalId);
     }, [ongoing.start_time]);
 
     return (
-        <div className="ongoing-wrapper flex flex-row justify-between">
-            <div className="flex flex-col">
-                <p>{ongoing.name}</p>
-                <p>{formattedTime}</p>
+        <div className="ongoing-wrapper" onClick={handleRedirect}>
+            <p>{ongoing.name}</p>
+            <div className="flex flex-row justify-between">
+                <h2>{formattedTime}</h2>
+                <button onClick={handleStop} className="stop-button">
+                    <i className="bi bi-stop-circle-fill"></i>
+                </button>
             </div>
-            <button onClick={handleStop}>
-                <i className="bi bi-stop-circle-fill"></i>
-            </button>
         </div>
     );
 }

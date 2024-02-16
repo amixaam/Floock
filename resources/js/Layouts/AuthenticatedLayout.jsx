@@ -32,7 +32,6 @@ export default function Authenticated({ user, header, children }) {
                 className="absolute max-h-screen w-full"
             />
 
-            {/* TODO: handle errors */}
             <Modal show={newTimerPopup} onClose={setNewTimerPopup}>
                 <CreateFloockForm
                     options={options}

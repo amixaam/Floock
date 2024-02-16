@@ -9,6 +9,8 @@ import "../../../css/view.css";
 import TotalStatistics from "@/Components/TotalStatistics";
 
 export default function View({ auth, project, floocks }) {
+    // TODO: Add filtering for tags, name and reset filters functionality
+
     const [filterOption, setFilterOption] = useState("today");
     const handleFilterChange = (event) => {
         setFilterOption(event.target.value);

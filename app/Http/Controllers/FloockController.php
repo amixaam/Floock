@@ -14,20 +14,15 @@ class FloockController extends Controller
     public function create(Request $request)
     {
         if (Ongoing::where('user_id', $request->user_id)->exists()) {
-            return Inertia::render('YourComponent', [
-                'errors' => ['You already have a floock running.']
-            ])->withViewData(['title' => 'Error']);
-        }
-        if (!isset($request->project['value'])) {
-            return Inertia::render('YourComponent', [
-                'errors' => ['No project selected.']
-            ])->withViewData(['title' => 'Error']);
+            return Inertia::share('errors', 'You already have an ongoing Floock!');
         }
         if (!isset($request->name)) {
-            return Inertia::render('YourComponent', [
-                'errors' => ['Name your Floock.']
-            ])->withViewData(['title' => 'Error']);
+            return Inertia::share('errors', 'Name your Floock!');
         }
+        if (!isset($request->project['value'])) {
+            return Inertia::share('errors', 'Select a project!');
+        }
+
 
         //validate errors
         $data = [
@@ -74,5 +69,29 @@ class FloockController extends Controller
             ]);
             $ongoing->delete();
         }
+    }
+
+    public function view()
+    {
+        $tags = Tag::where('user_id', auth()->user()->id)->get();
+        $projects = Project::where('user_id', auth()->user()->id)->get();
+        $options = [];
+        foreach ($tags as $tag) {
+            $options['tags'][] = [
+                'value' => $tag->id,
+                'label' => $tag->name
+            ];
+        }
+        foreach ($projects as $project) {
+            $options['projects'][] = [
+                'value' => $project->id,
+                'label' => $project->name
+            ];
+        }
+
+        return Inertia::render('Timer/Visual', [
+            'ongoing' => Ongoing::with('tag')->where('user_id', auth()->user()->id)->get(),
+            'options' => $options
+        ]);
     }
 }

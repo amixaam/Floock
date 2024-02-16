@@ -1,0 +1,35 @@
+.timer {
+    font-size: 10rem;
+    text-shadow: 0px 4px 100px rgba(163, 245, 171, 0.3);
+    line-height: 100%;
+}
+
+.white-button {
+    background-color: var(--text);
+    padding: 0.5rem 2rem;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: 200ms ease-out;
+}
+.white-button:hover {
+    filter: brightness(1.05);
+    scale: 1.02;
+}
+
+.timer-data {
+    display: flex;
+    gap: 1rem;
+    .creatable {
+        height: 100%;
+
+        .creatable__control {
+            height: 100%;
+            min-width: 15rem;
+        }
+        .creatable__input {
+            height: 100%;
+            --tw-ring-shadow: none;
+        }
+    }
+}
